@@ -180,11 +180,11 @@ export default function Home() {
 
       {/* Content on top */}
       <Box sx={{ position: "absolute", zIndex: 1, textAlign: "center" }}>
-        <Typography variant="h1" fontWeight="bold">
+        <Typography variant="h1" fontWeight="bold" fontSize="3rem">
         Epidemic Engine Cloud-based API
 
         </Typography>
-        <Typography variant="h2" fontWeight="bold">
+        <Typography variant="h2" fontWeight="bold" fontSize="2.5rem">
         Bridging Epidemic Simulators (GLEAM) with AI Algorithms
         </Typography>
       </Box>
