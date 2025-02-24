@@ -41,7 +41,7 @@ export default function Navigations() {
         justifyContent: "space-between",
         alignItems: "center",
         padding: "0.7rem",
-        boxShadow: "0 2px 4px rgba(0, 0, 0, 0.1)", // Optional: Add a shadow for better visibility
+        boxShadow: "0 2px 4px rgba(0, 0, 0, 0.1)", 
       }}
     >
       <Link href="/" style={{ textDecoration: "none", color: "black" }}>

@@ -1,3 +1,33 @@
+
+"use client";
+
+import React from "react";
+import { ComposableMap, Geographies, Geography } from "react-simple-maps";
+
+const geoUrl = "https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json";
+
+export default function WorldMap() {
+  return (
+    <ComposableMap>
+      <Geographies geography={geoUrl}>
+        {({ geographies }) =>
+          geographies.map((geo) => (
+            <Geography
+              key={geo.rsmKey}
+              geography={geo}
+              style={{
+                default: { fill: "#17e1b3ff", stroke: "#FFFFFF" },
+                hover: { fill: "#F53", stroke: "#FFFFFF" },
+                pressed: { fill: "#E42", stroke: "#FFFFFF" },
+              }}
+            />
+          ))
+        }
+      </Geographies>
+    </ComposableMap>
+  );
+}
+
 // "use client";
 
 // import React from "react";
@@ -107,33 +137,3 @@
 //   );
 // }
 
-
-
-"use client";
-
-import React from "react";
-import { ComposableMap, Geographies, Geography } from "react-simple-maps";
-
-const geoUrl = "https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json";
-
-export default function WorldMap() {
-  return (
-    <ComposableMap>
-      <Geographies geography={geoUrl}>
-        {({ geographies }) =>
-          geographies.map((geo) => (
-            <Geography
-              key={geo.rsmKey}
-              geography={geo}
-              style={{
-                default: { fill: "#17e1b3ff", stroke: "#FFFFFF" },
-                hover: { fill: "#F53", stroke: "#FFFFFF" },
-                pressed: { fill: "#E42", stroke: "#FFFFFF" },
-              }}
-            />
-          ))
-        }
-      </Geographies>
-    </ComposableMap>
-  );
-}
