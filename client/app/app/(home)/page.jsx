@@ -5,7 +5,7 @@ import { Box, Typography } from "@mui/material";
 import Image from 'next/image';
 import ReactMarkdown from "react-markdown"
 import remarkGfm from "remark-gfm";
-import WorldMap from "@/components/WorldMap";
+import WorldMap from "../components/WorldMap";
 import { ThemeProvider } from "@emotion/react";
 import { theme } from '/theme.js';
 
@@ -211,7 +211,13 @@ export default function Home() {
       {/* Architecture Section */}
       <Box id="architecture" sx={getSectionStyles}>
         <Typography variant="h2">Architecture</Typography>
-        <Typography variant="h4">Architecture Diagram</Typography>
+        <Image
+          src={'/architecture.png'} 
+          alt={'architecture'}
+          width={3000}
+          height={2000}
+          style={{ width: "auto", height: "auto", maxWidth: "100%" }}
+        />
       </Box>
 
       {/* Results Section */}

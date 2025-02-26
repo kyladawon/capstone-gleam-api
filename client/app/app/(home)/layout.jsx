@@ -1,5 +1,5 @@
 import React from "react";
-import Navigations from "../../components/navigations";
+import Navigations from "../components/navigations";
 import { Box, Divider, ThemeProvider } from "@mui/material";
 import { theme } from "../../theme";
 
