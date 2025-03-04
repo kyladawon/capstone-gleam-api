@@ -1,0 +1,1 @@
+# npm install @sveltejs/vite-plugin-svelte vite

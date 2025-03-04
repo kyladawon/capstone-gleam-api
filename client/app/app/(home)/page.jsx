@@ -8,11 +8,15 @@ import remarkGfm from "remark-gfm";
 import WorldMap from "../components/WorldMap";
 import { ThemeProvider } from "@emotion/react";
 import { theme } from '/theme.js';
+import Bubble from '../components/Bubble';
 
 const getSectionStyles = (theme) => ({
   display: "flex",
   alignItems: "center",
-  height: "100vh",
+  padding:theme.spacing(2),
+  // margin:"2rem 0",
+  minHeight: '100vh',
+  overflow: "auto",
   flexDirection: "column",
   justifyContent: "center",
   gap: "1rem",
@@ -194,7 +198,20 @@ export default function Home() {
       <Box id="overview" sx={getSectionStyles}>
         <Typography variant="h2">Overview</Typography>
         <Typography variant="h4">Introduction</Typography>
-        <Box sx={{ fontSize: "1.4rem" }}>
+        <Box
+          sx={{
+            maxWidth: "150vh",
+            margin: "0 auto",
+            padding: "1.5rem",
+            backgroundColor: "rgba(255, 255, 255, 0.998)", // Semi-transparent background
+            borderRadius: "10px",
+            boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.1)", // Soft shadow
+            color: "#333", // Dark gray text for readability
+            fontSize: "1.2rem", // Adjust font size
+            lineHeight: "1.6", // Improve text readability
+            fontFamily: "Arial, sans-serif", // Ensure a clean font
+          }}
+        >
           <ReactMarkdown children={overviewContent} remarkPlugins={[remarkGfm]} />
         </Box>
       </Box>
@@ -203,7 +220,20 @@ export default function Home() {
       <Box id="methods" sx={getSectionStyles}>
         <Typography variant="h2">Methods</Typography>
         <Typography variant="h4">API, GLEaM Integration</Typography>
-        <Box sx={{ fontSize: "1.4rem" }}>
+        <Box
+          sx={{
+            maxWidth: "150vh",
+            margin: "0 auto",
+            padding: "1.5rem",
+            backgroundColor: "rgba(255, 255, 255, 0.998)", // Semi-transparent background
+            borderRadius: "10px",
+            boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.1)", // Soft shadow
+            color: "#333", // Dark gray text for readability
+            fontSize: "1.2rem", // Adjust font size
+            lineHeight: "1.6", // Improve text readability
+            fontFamily: "Arial, sans-serif", // Ensure a clean font
+          }}
+        >
           <ReactMarkdown children={methodsContent} remarkPlugins={[remarkGfm]} />
         </Box>
       </Box>
@@ -211,22 +241,54 @@ export default function Home() {
       {/* Architecture Section */}
       <Box id="architecture" sx={getSectionStyles}>
         <Typography variant="h2">Architecture</Typography>
-        <Image
-          src={'/architecture.png'} 
-          alt={'architecture'}
-          width={3000}
-          height={2000}
-          style={{ width: "auto", height: "auto", maxWidth: "100%" }}
-        />
+        <Box sx={{
+            maxWidth: "150vh",
+            margin: "0 auto",
+            padding: "1.5rem",
+            backgroundColor: "rgba(255, 255, 255, 0.998)", // Semi-transparent background
+            borderRadius: "10px",
+            boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.1)", // Soft shadow
+            color: "#333", // Dark gray text for readability
+            fontSize: "1.2rem", // Adjust font size
+            lineHeight: "1.6", // Improve text readability
+            fontFamily: "Arial, sans-serif", // Ensure a clean font
+          }}
+          >
+            <Image
+              src={'/architecture.png'} 
+              alt={'architecture'}
+              width={3000}
+              height={2000}
+              style={{ width: "auto", height: "auto", maxWidth: "100%" }}
+            />
+          </Box>
       </Box>
 
       {/* Results Section */}
       <Box id="results" sx={getSectionStyles}>
         <Typography variant="h2">Results</Typography>
-        <Typography variant="h4">Conclusion</Typography>
-        <Box sx={{ fontSize: "1.4rem" }}>
+        <Box
+          sx={{
+            maxWidth: "150vh",
+            margin: "0 auto",
+            padding: "1.5rem",
+            backgroundColor: "rgba(255, 255, 255, 0.998)", // Semi-transparent background
+            borderRadius: "10px",
+            boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.1)", // Soft shadow
+            color: "#333", // Dark gray text for readability
+            fontSize: "1.2rem", // Adjust font size
+            lineHeight: "1.6", // Improve text readability
+            fontFamily: "Arial, sans-serif", // Ensure a clean font
+          }}
+        >
           <ReactMarkdown children={resultsContent} remarkPlugins={[remarkGfm]} />
         </Box>
+      </Box>
+
+      {/* Demo Section */}
+      <Box id="demo" sx={getSectionStyles}>
+        <Typography variant="h4">Stages Over Time Seqeunce</Typography>
+        <Bubble />
       </Box>
 
       {/* Team Section */}
