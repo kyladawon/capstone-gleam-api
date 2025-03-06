@@ -9,6 +9,8 @@ import WorldMap from "../components/WorldMap";
 import { ThemeProvider } from "@emotion/react";
 import { theme } from '/theme.js';
 import Bubble from '../components/Bubble';
+import LinePlot from '../components/LinePlot';
+import AreaPlot from '../components/Area';
 
 const getSectionStyles = (theme) => ({
   display: "flex",
@@ -287,8 +289,11 @@ export default function Home() {
 
       {/* Demo Section */}
       <Box id="demo" sx={getSectionStyles}>
-        <Typography variant="h4">Stages Over Time Seqeunce</Typography>
-        <Bubble />
+        {/* <Typography variant="h4">Stages Over Time Seqeunce</Typography> */}
+        {/* <Bubble /> */}
+        {/* <Typography variant="h4">Change Over Time Sequence for Each Status</Typography> */}
+        {/* <LinePlot />  */}
+        {/* <AreaPlot /> */}
       </Box>
 
       {/* Team Section */}

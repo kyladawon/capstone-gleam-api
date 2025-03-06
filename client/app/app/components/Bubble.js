@@ -1,17 +1,17 @@
 import React, { useEffect, useState, useRef } from "react";
 import * as Plot from "@observablehq/plot";
 
-// Function to process the array into bubbleData format
 const processBubbleData = (data, currentTime, containerWidth, containerHeight) => {
     const bubbleData = [];
-    const stages = data[0][0].length; // 24 stages
+    const stages = data[0][0].length;
 
-    const columns = 6; // 6 bubbles per row
+    // bubble location
+    const columns = 6; 
     const rows = 4;
     const rowSpacing = containerHeight / 5 + 0.0001;
     const colSpacing = containerWidth / 7;
-
     const extraPaddingX = containerWidth * 0.05;
+    
     // Normalize for sizing
     let minVal = Infinity;
     let maxVal = -Infinity;
@@ -24,14 +24,17 @@ const processBubbleData = (data, currentTime, containerWidth, containerHeight) =
         }
     }
 
+    // bubble size basic setup
     const MIN_BUBBLE_SIZE = 10;  
     const MAX_BUBBLE_SIZE = 200; 
 
+    // scale for bubble size
     const scaleValue = (value) => {
-        const scaledValue = Math.log(value + 1) / Math.log(maxVal + 1); // Logarithmic scaling, preventing zero
+        const scaledValue = Math.log(value + 1) / Math.log(maxVal + 1); 
         return scaledValue;
     };
 
+    // changing bubble size 
     for (let stage = 0; stage < stages; stage++) {
         const value = data[0][currentTime][stage];
         // const scaledValue = scaleValue(value);
@@ -41,7 +44,7 @@ const processBubbleData = (data, currentTime, containerWidth, containerHeight) =
             const scaledValue = scaleValue(value);
             bubbleSize = MIN_BUBBLE_SIZE / 100000000 + scaledValue * (MAX_BUBBLE_SIZE - MIN_BUBBLE_SIZE);
         } else {
-            bubbleSize = MIN_BUBBLE_SIZE / 100000000; // Use minimum size for zero or very small values
+            bubbleSize = MIN_BUBBLE_SIZE / 100000000; 
         }
 
         bubbleData.push({
@@ -56,7 +59,7 @@ const processBubbleData = (data, currentTime, containerWidth, containerHeight) =
     return bubbleData;
 };
 
-const LinePlot = () => {
+const Bubble = () => {
   const [data, setData] = useState(null);
   const [currentTime, setCurrentTime] = useState(0);
   const [isPlaying, setIsPlaying] = useState(false);
@@ -90,15 +93,18 @@ const LinePlot = () => {
     if (!plotRef.current || !data) return;
 
     plotRef.current.innerHTML = ""; 
-
+    
+    // plot size
     const containerWidth = plotRef.current.clientWidth;
     const containerHeight = plotRef.current.clientHeight;
+    const PLOT_WIDTH = window.innerWidth * 0.9; 
+    const PLOT_HEIGHT = window.innerHeight * 0.7; 
+
+    // process data
     const bubbleData = processBubbleData(data, time, containerWidth, containerHeight);
     console.log("Processed Bubble Data:", bubbleData);
 
-    const PLOT_WIDTH = window.innerWidth * 0.9; 
-    const PLOT_HEIGHT = window.innerHeight * 0.8; 
-
+    
     const plot = Plot.plot({
         width: PLOT_WIDTH,
         height: PLOT_HEIGHT,
@@ -108,10 +114,23 @@ const LinePlot = () => {
         marginTop: 70,
         axis: null,
         marks: [
+          // title
+          // Plot.text([{
+          //   x: PLOT_WIDTH / 2,
+          //   y: PLOT_HEIGHT - 50,
+          //   text: `Stages Over Time Sequence = ${time}`,
+          // }], {
+          //   x: "x"
+          //   y: "y",
+          //   text: "text",
+          //   fontSize: 24,
+          //   fontWeight: "bold",
+          //   textAnchor: "middle",
+          // }),
             Plot.dot(bubbleData, {
             x: "x",
             y: "y",
-            r: (d) => d.val, // Scale the bubble size 
+            r: (d) => d.val, // Scale  bubble size 
             fill: "color",
             title: (d) => `${d.source}: ${d.val}`,
             }),
@@ -133,11 +152,11 @@ const LinePlot = () => {
     renderPlot(currentTime);
   }, [currentTime, data]);
 
-  // Play/stop 
+  // slider automate interval
   useEffect(() => {
     if (isPlaying) {
       animationRef.current = setInterval(() => {
-        setCurrentTime((prevTime) => (prevTime >= 27 ? 0 : prevTime + 1)); // Loop through time sequences
+        setCurrentTime((prevTime) => (prevTime >= 27 ? 0 : prevTime + 1)); 
       }, 1500);
     } else {
       clearInterval(animationRef.current);
@@ -147,14 +166,14 @@ const LinePlot = () => {
   }, [isPlaying]);
 
 
-  // Detect when the section is in view
+  // automate slider
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
         if (entries[0].isIntersecting) {
-          setIsPlaying(true); // Start
+          setIsPlaying(true); 
         } else {
-          setIsPlaying(false); // Stop 
+          setIsPlaying(false); 
         }
       },
       { threshold: 0.5 } 
@@ -171,6 +190,7 @@ const LinePlot = () => {
     };
   }, []);
 
+  // slider click function
   const handleSliderChange = (e) => {
     setCurrentTime(e.target.value);
   };
@@ -209,5 +229,5 @@ const LinePlot = () => {
   );
 };
 
-export default LinePlot;
+export default Bubble;
 
