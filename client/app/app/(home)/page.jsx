@@ -198,7 +198,6 @@ export default function Home() {
 
       {/* Overview Section */}
       <Box id="overview" sx={getSectionStyles}>
-        <Typography variant="h2">Overview</Typography>
         <Typography variant="h4">Introduction</Typography>
         <Box
           sx={{
@@ -228,8 +227,7 @@ export default function Home() {
 
       {/* Methods Section */}
       <Box id="methods" sx={getSectionStyles}>
-        <Typography variant="h2">Methods</Typography>
-        <Typography variant="h4">API, GLEaM Integration</Typography>
+        <Typography variant="h4">Methods</Typography>
         <Box
           sx={{
             maxWidth: "150vh",
@@ -251,7 +249,7 @@ export default function Home() {
 
       {/* Architecture Section */}
       <Box id="architecture" sx={getSectionStyles}>
-        <Typography variant="h2">Architecture</Typography>
+        <Typography variant="h4">Architecture</Typography>
         <Box sx={{
             maxWidth: "150vh",
             margin: "0 auto",
@@ -277,7 +275,7 @@ export default function Home() {
 
       {/* Results Section */}
       <Box id="results" sx={getSectionStyles}>
-        <Typography variant="h2">Results</Typography>
+        <Typography variant="h4">Results</Typography>
         <Box
           sx={{
             maxWidth: "150vh",
