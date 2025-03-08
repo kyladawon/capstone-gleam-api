@@ -212,6 +212,7 @@ export default function Home() {
             lineHeight: "1.6", // Improve text readability
             fontFamily: "Arial, sans-serif", // Ensure a clean font
             textAlign: "center",
+    
           }}
         >
           <ReactMarkdown children={overviewContent} remarkPlugins={[remarkGfm]} />
@@ -261,6 +262,8 @@ export default function Home() {
             fontSize: "1.2rem", // Adjust font size
             lineHeight: "1.6", // Improve text readability
             fontFamily: "Arial, sans-serif", // Ensure a clean font
+            textAlign: "center",
+
           }}
           >
             <Image
