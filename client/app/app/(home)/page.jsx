@@ -24,7 +24,7 @@ const getSectionStyles = (theme) => ({
   gap: "1rem",
   py: "2rem",
   px: "2rem",
-  backgroundColor: theme.palette.primary.background,
+  backgroundColor: "#f5f5dc",
   color: theme.palette.primary.white,
   fontFamily: theme.typography.fontFamily,
 });
@@ -221,7 +221,7 @@ export default function Home() {
               alt={'intro'}
               width={3000}
               height={2000}
-              style={{ width: "auto", height: "auto", maxWidth: "50%" }}
+              style={{ width: "auto", height: "auto", maxWidth: "30%" }}
             />
         </Box>
       </Box>
@@ -270,7 +270,7 @@ export default function Home() {
               alt={'architecture'}
               width={3000}
               height={2000}
-              style={{ width: "auto", height: "auto", maxWidth: "100%" }}
+              style={{ width: "auto", height: "auto", maxWidth: "50%" }}
             />
           </Box>
       </Box>
