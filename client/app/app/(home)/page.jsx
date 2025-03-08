@@ -215,6 +215,13 @@ export default function Home() {
           }}
         >
           <ReactMarkdown children={overviewContent} remarkPlugins={[remarkGfm]} />
+          <Image
+              src={'/intro.png'} 
+              alt={'intro'}
+              width={3000}
+              height={2000}
+              style={{ width: "auto", height: "auto", maxWidth: "100%" }}
+            />
         </Box>
       </Box>
 
