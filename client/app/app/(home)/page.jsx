@@ -212,6 +212,7 @@ export default function Home() {
             fontSize: "1.2rem", // Adjust font size
             lineHeight: "1.6", // Improve text readability
             fontFamily: "Arial, sans-serif", // Ensure a clean font
+            textAlign: "center",
           }}
         >
           <ReactMarkdown children={overviewContent} remarkPlugins={[remarkGfm]} />
@@ -220,7 +221,7 @@ export default function Home() {
               alt={'intro'}
               width={3000}
               height={2000}
-              style={{ width: "auto", height: "auto", maxWidth: "100%" }}
+              style={{ width: "auto", height: "auto", maxWidth: "50%" }}
             />
         </Box>
       </Box>
@@ -241,6 +242,7 @@ export default function Home() {
             fontSize: "1.2rem", // Adjust font size
             lineHeight: "1.6", // Improve text readability
             fontFamily: "Arial, sans-serif", // Ensure a clean font
+            textAlign: "center",
           }}
         >
           <ReactMarkdown children={methodsContent} remarkPlugins={[remarkGfm]} />
@@ -288,6 +290,7 @@ export default function Home() {
             fontSize: "1.2rem", // Adjust font size
             lineHeight: "1.6", // Improve text readability
             fontFamily: "Arial, sans-serif", // Ensure a clean font
+            textAlign: "center",
           }}
         >
           <ReactMarkdown children={resultsContent} remarkPlugins={[remarkGfm]} />
