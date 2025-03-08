@@ -15,7 +15,7 @@ import AreaPlot from '../components/Area';
 const getSectionStyles = (theme) => ({
   display: "flex",
   alignItems: "center",
-  padding:theme.spacing(2),
+  padding:theme.spacing(1),
   // margin:"2rem 0",
   minHeight: '100vh',
   overflow: "auto",
