@@ -73,7 +73,7 @@ const teamMembers = [
     name: "Alaa Fadhlallah",
     school: "University of California San Diego",
     github: "https://github.com/person",
-    linkedin: "https://linkedin.com/in/person",
+    linkedin: "https://www.linkedin.com/in/alaa-fadhlallah/",
     imageSrc: "/1hdsi.png",
   },
   {
@@ -87,28 +87,28 @@ const teamMembers = [
     name: "Ethan Cao",
     school: "University of California San Diego",
     github: "https://github.com/person",
-    linkedin: "https://linkedin.com/in/person",
+    linkedin: "https://www.linkedin.com/in/ethan-cao1/",
     imageSrc: "/1hdsi.png",
   },
   {
     name: "Liam Manatt",
     school: "University of California San Diego",
     github: "https://github.com/person",
-    linkedin: "https://linkedin.com/in/person",
+    linkedin: "https://www.linkedin.com/in/liam-manatt/",
     imageSrc: "/1hdsi.png",
   },
   {
     name: "Manav Jairam",
     school: "University of California San Diego",
     github: "https://github.com/person",
-    linkedin: "https://linkedin.com/in/person",
+    linkedin: "https://www.linkedin.com/in/manav-jairam-0a881a1aa/",
     imageSrc: "/1hdsi.png",
   },
   {
     name: "Kyla (Dawon) Park",
     school: "University of California San Diego",
     github: "https://github.com/person",
-    linkedin: "https://linkedin.com/in/person",
+    linkedin: "https://www.linkedin.com/in/kyla-dawon-park/",
     imageSrc: "/1hdsi.png",
   },
 ];
@@ -198,7 +198,7 @@ export default function Home() {
 
       {/* Overview Section */}
       <Box id="overview" sx={getSectionStyles}>
-        <Typography variant="h4">Introduction</Typography>
+        <Typography variant="h3">Introduction</Typography>
         <Box
           sx={{
             maxWidth: "150vh",
@@ -228,7 +228,7 @@ export default function Home() {
 
       {/* Methods Section */}
       <Box id="methods" sx={getSectionStyles}>
-        <Typography variant="h4">Methods</Typography>
+        <Typography variant="h3">Methods</Typography>
         <Box
           sx={{
             maxWidth: "150vh",
@@ -250,7 +250,7 @@ export default function Home() {
 
       {/* Architecture Section */}
       <Box id="architecture" sx={getSectionStyles}>
-        <Typography variant="h4">Architecture</Typography>
+        <Typography variant="h3">Architecture</Typography>
         <Box sx={{
             maxWidth: "150vh",
             margin: "0 auto",
@@ -278,7 +278,7 @@ export default function Home() {
 
       {/* Results Section */}
       <Box id="results" sx={getSectionStyles}>
-        <Typography variant="h4">Results</Typography>
+        <Typography variant="h3">Results</Typography>
         <Box
           sx={{
             maxWidth: "150vh",
