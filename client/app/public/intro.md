@@ -1,7 +1,1 @@
-Epidemic simulators model disease spread, but are computationally intensive.
-
-AI surrogate models significantly reduce simulation time from weeks to days. However, current AI models rely on pre-simulated data, which is costly to store and lacks adaptability to evolving disease dynamics.
-
-here is a critical need for a scalable, real-time epidemic simulation framework that integrates traditional epidemic models with AI-powered acceleration.
-
-Our objective was to develop an Epidemic Engine Cloud-based API service for real-time epidemic simulation framework that integrates traditional epidemic models with AI surrogate model acceleration. 
+Epidemic simulators model disease spread, but are computationally intensive. AI surrogate models significantly reduce simulation time from weeks to days. However, current AI models rely on pre-simulated data, which is costly to store and lacks adaptability to evolving disease dynamics. There is a critical need for a scalable, real-time epidemic simulation framework that integrates traditional epidemic models with AI-powered acceleration. Our objective was to develop an Epidemic Engine Cloud-based API service for real-time epidemic simulation framework that integrates traditional epidemic models with AI surrogate model acceleration. 
