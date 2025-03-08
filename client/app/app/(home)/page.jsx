@@ -24,7 +24,7 @@ const getSectionStyles = (theme) => ({
   gap: "1rem",
   py: "2rem",
   px: "2rem",
-  backgroundColor: "#f5f5dc",
+  backgroundColor: theme.palette.primary.background,
   color: theme.palette.primary.white,
   fontFamily: theme.typography.fontFamily,
 });
