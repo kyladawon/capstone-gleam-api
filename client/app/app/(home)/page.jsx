@@ -268,7 +268,7 @@ export default function Home() {
               alt={'architecture'}
               width={3000}
               height={2000}
-              style={{ width: "auto", height: "auto", maxWidth: "50%" }}
+              style={{ width: "auto", height: "auto", maxWidth: "80%" }}
             />
           </Box>
       </Box>
