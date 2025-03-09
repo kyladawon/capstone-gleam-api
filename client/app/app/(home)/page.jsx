@@ -295,6 +295,13 @@ export default function Home() {
           }}
         >
           <ReactMarkdown children={resultsContent} remarkPlugins={[remarkGfm]} />
+            <Image
+              src={'/result1.png'} 
+              alt={'result one'}
+              width={3000}
+              height={2000}
+              style={{ width: "auto", height: "auto", maxWidth: "80%" }}
+            />
         </Box>
       </Box>
 
