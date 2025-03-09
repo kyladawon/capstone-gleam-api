@@ -303,7 +303,7 @@ export default function Home() {
         {/* <Typography variant="h4">Stages Over Time Seqeunce</Typography> */}
         {/* <Bubble /> */}
         {/* <Typography variant="h4">Change Over Time Sequence for Each Status</Typography> */}
-        {/* <LinePlot />  */}
+        <LinePlot /> 
         {/* <AreaPlot /> */}
       </Box>
 

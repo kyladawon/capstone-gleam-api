@@ -4,6 +4,7 @@ import * as d3 from 'd3';
 const LinePlot = () => {
   const svgRef = useRef();
   const [data, setData] = useState(null);  // State to hold the fetched data
+  const [pred, setPred] = useState(null);
   const [selectedStatus, setSelectedStatus] = useState('status_1');
   const [windowSize, setWindowSize] = useState({
     width: window.innerWidth,
@@ -20,9 +21,15 @@ const LinePlot = () => {
           throw new Error(`HTTP error! Status: ${response.status}`);
         }
 
+        const predResponse = await fetch("/dummy_pred.json");
+        if (!predResponse.ok) {
+          throw new Error(`HTTP error! Status: ${response.status}`);
+        }
         const arrayData = await response.json();
+        const predData = await predResponse.json();
         console.log("Fetched Data:", arrayData);
         setData(arrayData);  // Set the fetched data to state
+        setPred(predData)
       } catch (error) {
         console.error("Error fetching data:", error);
       }
@@ -55,17 +62,23 @@ const LinePlot = () => {
   };
 
   let transformedData = {};
+  let transformedPred = {};
 
   if (data) {
     transformedData = transformData(data);
+  }
+
+  if (pred) {
+    transformedPred = transformData(pred);
   }
 
   const statusOptions = Object.keys(transformedData);
 
   // render chart
   const renderLineChart = () => {
-    if (!transformedData[selectedStatus]) return;
+    if (!transformedData[selectedStatus] || !transformedPred[selectedStatus]) return;
     const statusData = transformedData[selectedStatus];
+    const statusPred = transformedPred[selectedStatus];
 
     // chart size
     const width = windowSize.width * 0.8;
@@ -82,8 +95,8 @@ const LinePlot = () => {
       .range([margin.left, width - margin.right]);
 
     // y-axis
-    const yMin = d3.min(statusData, (d) => d.value);
-    const yMax = d3.max(statusData, (d) => d.value);
+    const yMin = d3.min([d3.min(statusData, (d) => d.value),d3.min(statusPred, (d) => d.value)]);
+    const yMax = d3.max([d3.max(statusData, (d) => d.value),d3.max(statusPred, (d) => d.value)]);
     if (yMin === undefined || yMax === undefined || isNaN(yMin) || isNaN(yMax)) return;
 
     const epsilon = 0.01;
@@ -130,6 +143,29 @@ const LinePlot = () => {
       .attr('cy', (d) => y(d.value))
       .attr('r', 4)
       .attr('fill', 'steelblue');
+
+    // line
+    svg.append('g')
+      .selectAll('path')
+      .data([statusPred])
+      .enter()
+      .append('path')
+      .attr('class', 'line')
+      .attr('d', line)
+      .attr('fill', 'none')
+      .attr('stroke', 'yellow')
+      .attr('stroke-width', 2);
+
+    // Add points to the chart
+    svg.append('g')
+      .selectAll('circle')
+      .data(statusPred)
+      .enter()
+      .append('circle')
+      .attr('cx', (d) => x(d.time))
+      .attr('cy', (d) => y(d.value))
+      .attr('r', 4)
+      .attr('fill', 'yellow');
 
     // X axis
     svg.append('g')
