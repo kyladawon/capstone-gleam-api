@@ -29,7 +29,7 @@ const getSectionStyles = (theme) => ({
   fontFamily: theme.typography.fontFamily,
 });
 
-const TeamMemberCard = ({ name, school, github, linkedin, imageSrc }) => (
+const TeamMemberCard = ({ name, school, linkedin, imageSrc }) => (
   <Box sx={{
     textAlign: "center",
     width: "200px",
@@ -54,11 +54,7 @@ const TeamMemberCard = ({ name, school, github, linkedin, imageSrc }) => (
 
     {/* Social Links */}
     <Box sx={{ display: "flex", justifyContent: "center", gap: "1rem", mt: 1 }}>
-      {github && (
-        <a href={github} target="_blank" rel="noopener noreferrer">
-          <Typography variant="body2" sx={{ color: "black" }}>GitHub</Typography>
-        </a>
-      )}
+    
       {linkedin && (
         <a href={linkedin} target="_blank" rel="noopener noreferrer">
           <Typography variant="body2" sx={{ color: "black" }}>LinkedIn</Typography>
@@ -72,42 +68,36 @@ const teamMembers = [
   {
     name: "Alaa Fadhlallah",
     school: "University of California San Diego",
-    github: "https://github.com/person",
     linkedin: "https://www.linkedin.com/in/alaa-fadhlallah/",
     imageSrc: "/1hdsi.png",
   },
   {
     name: "Anirudh Indraganti",
     school: "University of California San Diego",
-    github: "https://github.com/person",
     linkedin: "https://linkedin.com/in/person",
     imageSrc: "/1hdsi.png",
   },
   {
     name: "Ethan Cao",
     school: "University of California San Diego",
-    github: "https://github.com/person",
     linkedin: "https://www.linkedin.com/in/ethan-cao1/",
     imageSrc: "/1hdsi.png",
   },
   {
     name: "Liam Manatt",
     school: "University of California San Diego",
-    github: "https://github.com/person",
     linkedin: "https://www.linkedin.com/in/liam-manatt/",
     imageSrc: "/1hdsi.png",
   },
   {
     name: "Manav Jairam",
     school: "University of California San Diego",
-    github: "https://github.com/person",
     linkedin: "https://www.linkedin.com/in/manav-jairam-0a881a1aa/",
     imageSrc: "/1hdsi.png",
   },
   {
     name: "Kyla (Dawon) Park",
     school: "University of California San Diego",
-    github: "https://github.com/person",
     linkedin: "https://www.linkedin.com/in/kyla-dawon-park/",
     imageSrc: "/1hdsi.png",
   },
