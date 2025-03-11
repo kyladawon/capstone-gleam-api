@@ -7,8 +7,8 @@ const LinePlot = () => {
   const [pred, setPred] = useState(null);
   const [selectedStatus, setSelectedStatus] = useState('status_1');
   const [windowSize, setWindowSize] = useState({
-    width: window.innerWidth,
-    height: window.innerHeight,
+    width: 0,
+    height: 0,
   });
 
   // Fetch the data
@@ -38,35 +38,26 @@ const LinePlot = () => {
     fetchData();
   }, []);
 
+  // Update window size on resize
+    useEffect(() => {
+      const handleResize = () => {
+        setWindowSize({
+          width: window.innerWidth,
+          height: window.innerHeight,
+        });
+      };
+
+      handleResize();
+  
+      window.addEventListener('resize', handleResize);
+      return () => window.removeEventListener('resize', handleResize);
+    }, []);
+
   // Dataload
   const transformData = (rawData) => {
     const statusData = {};
-    const statusNames = [
-      'total_Latent_prevalence',
-      'total_Infectious_symptomatic_prevalence',
-      'total_Infectious_asymptomatic_prevalence',
-      'total_Hospitalized_prevalence',
-      'total_ICU_prevalence',
-      'total_Removed_asymptomatic_prevalence',
-      'total_Removed_symptomatic_prevalence',
-      'total_Home_asymptomatic_prevalence',
-      'total_Home_mild_prevalence',
-      'total_Home_severe_prevalence',
-      'total_Removed_hospitalized_prevalence',
-      'total_Deaths_hospitalized_prevalence',
-      'total_Latent_incidence',
-      'total_Infectious_symptomatic_incidence',
-      'total_Infectious_asymptomatic_incidence',
-      'total_Hospitalized_incidence',
-      'total_ICU_incidence',
-      'total_Removed_asymptomatic_incidence',
-      'total_Removed_symptomatic_incidence',
-      'total_Home_asymptomatic_incidence',
-      'total_Home_mild_incidence',
-      'total_Home_severe_incidence',
-      'total_Removed_hospitalized_incidence',
-      'total_Deaths_hospitalized_incidence'
-    ]
+    
+  
 
     for (let statusIndex = 0; statusIndex < 24; statusIndex++) {
       const statusKey = `status_${statusIndex + 1}`;
@@ -98,9 +89,39 @@ const LinePlot = () => {
   if (pred) {
     transformedPred = transformData(pred);
   }
+  const statusNames = [
+    'Total Latent Prevalence',
+    'Total Infectious Symptomatic Prevalence',
+    'Total Infectious Asymptomatic Prevalence',
+    'Total Hospitalized Prevalence',
+    'Total ICU Prevalence',
+    'Total Removed Asymptomatic Prevalence',
+    'Total Removed Symptomatic Prevalence',
+    'Total Home Asymptomatic Prevalence',
+    'Total Home Mild Prevalence',
+    'Total Home Severe Prevalence',
+    'Total Removed Hospitalized Prevalence',
+    'Total Deaths Hospitalized Prevalence',
+    'Total Latent Incidence',
+    'Total Infectious Symptomatic Incidence',
+    'Total Infectious Asymptomatic Incidence',
+    'Total Hospitalized Incidence',
+    'Total ICU Incidence',
+    'Total Removed Asymptomatic Incidence',
+    'Total Removed Symptomatic Incidence',
+    'Total Home Asymptomatic Incidence',
+    'Total Home Mild Incidence',
+    'Total Home Severe Incidence',
+    'Total Removed Hospitalized Incidence',
+    'Total Deaths Hospitalized Incidence'
+  ]
 
-  const statusOptions = Object.keys(transformedData);
+  const statusOptions = Object.keys(transformedData).map((key, index) => ({
+    value: key,
+    label: `Compartment ${index + 1}: ${statusNames[index]}`,
+  }));
 
+  
   // render chart
   const renderLineChart = () => {
     if (!transformedData[selectedStatus] || !transformedPred[selectedStatus]) return;
@@ -139,6 +160,8 @@ const LinePlot = () => {
 
     svg.selectAll('*').remove();
 
+    
+
     // title
     svg.append("text")
       .attr("x", (width / 2))             
@@ -148,15 +171,6 @@ const LinePlot = () => {
       .style("fill", "white")
       .text(`Individuals in Compartment ${selectedStatus.split('_')[1]} over Time`);
 
-       // X axis label
-    svg.append("text")
-    .attr("class", "x label")
-    .attr("text-anchor", "end")
-    .attr("x", (width /2))
-    .attr("y", height - (margin.bottom / 2))
-    .text("Days")
-    .style("font-size", "30px") 
-    .style("fill", "white");
 
     // line
     svg.append('g')
@@ -209,6 +223,16 @@ const LinePlot = () => {
       .attr('transform', `translate(0, ${height - margin.bottom})`)
       .call(d3.axisBottom(x))
       .style("font-size", "18px");
+
+    // X axis label
+    svg.append("text")
+      .attr("class", "x label")
+      .attr("text-anchor", "end")
+      .attr("x", (width /2))
+      .attr("y", height - (margin.bottom / 2))
+      .text("Days")
+      .style("font-size", "20px") 
+      .style("fill", "white");
     
 
     // y axis
@@ -216,6 +240,17 @@ const LinePlot = () => {
       .attr('transform', `translate(${margin.left}, 0)`)
       .call(d3.axisLeft(y))
       .style("font-size", "18px");
+
+    // y axis label
+    svg.append("text")
+      .attr("class", "y label")
+      .attr("text-anchor", "middle")
+      .attr("transform", `rotate(-90)`)
+      .attr("x", -height / 2 - 30) // Center vertically
+      .attr("y", margin.left / 2 - 35) // Adjust to move closer to the axis
+      .text("Number of Individuals")
+      .style("font-size", "20px")
+      .style("fill", "white");
     
   };
 
@@ -226,15 +261,16 @@ const LinePlot = () => {
   }, [selectedStatus, data]);
 
   return (
-    <div>
-      <select onChange={(e) => setSelectedStatus(e.target.value)} value={selectedStatus} style={{ fontSize: '16px', padding: '5px', width: '120px', fontWeight: 'bold' }}>
-        {statusOptions.map((status, index) => (
-          <option key={index} value={status}>
-            {`Status ${index + 1}`}
+    <div style = {{display: 'flex', flexDirection: 'column',  height:'100%'}}>
+      <svg ref={svgRef}></svg>
+      <select onChange={(e) => setSelectedStatus(e.target.value)} value={selectedStatus} style={{ fontSize: '16px', padding: '5px', width: '500px', fontWeight: 'bold', marginTop:'10px'}}>
+        {statusOptions.map((option) => (
+          <option key={option.value} value={option.value}>
+            {option.label}
           </option>
         ))}
       </select>
-      <svg ref={svgRef}></svg>
+      
     </div>
   );
 };

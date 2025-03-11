@@ -64,6 +64,33 @@ const TeamMemberCard = ({ name, school, linkedin, imageSrc }) => (
   </Box>
 );
 
+const TeamMentorCard = ({ name, department, imageSrc }) => (
+  <Box sx={{
+    textAlign: "center",
+    width: "200px",
+    padding: "1rem",
+    backgroundColor: "#f4f4f4", 
+    borderRadius: "8px", // Rounded corners
+    boxShadow: "0px 4px 6px rgba(0, 0, 0, 0.1)", // Light shadow for depth
+    transition: "transform 0.3s ease-in-out",
+    "&:hover": {
+      transform: "scale(1.05)", // Slight scale effect on hover
+    },
+  }}>
+    <Image
+      src={imageSrc} 
+      alt={name}
+      width={150}
+      height={150}
+      style={{ borderRadius: "50%" }} // Make the image round
+    />
+    <Typography variant="h6" sx={{ mt: 2, color: "black" }}>{name}</Typography>
+    <Typography variant="body1" sx={{ color: "gray" }}>{department}</Typography>
+
+ 
+  </Box>
+);
+
 const teamMembers = [
   {
     name: "Alaa Fadhlallah",
@@ -99,7 +126,7 @@ const teamMembers = [
     name: "Kyla (Dawon) Park",
     school: "University of California San Diego",
     linkedin: "https://www.linkedin.com/in/kyla-dawon-park/",
-    imageSrc: "/1hdsi.png",
+    imageSrc: "/kyla.png",
   },
 ];
 
@@ -107,22 +134,22 @@ const teamMentors = [
   {
     name: "Rose Yu",
     department: "University of California San Diego",
-    imageSrc: "/1hdsi.png",
+    imageSrc: "/rose.jpg",
   },
   {
     name: "Yian Ma",
     department: "University of California San Diego",
-    imageSrc: "/1hdsi.png",
+    imageSrc: "/yian.jpg",
   },
   {
     name: "Matteo Chinazzi",
     department: "Northeastern University",
-    imageSrc: "/1hdsi.png",
+    imageSrc: "/matteo.jpg",
   },
   {
     name: "Allen Wu",
     department: "University of California San Diego",
-    imageSrc: "/1hdsi.png",
+    imageSrc: "/allen.png",
   },
 ];
 
@@ -314,7 +341,7 @@ export default function Home() {
 
       {/* Demo Section */}
       <Box id="demo" sx={getSectionStyles}>
-        {/* <Typography variant="h4">Stages Over Time Seqeunce</Typography> */}
+        <Typography variant="h3">Epidemic Progression</Typography>
         {/* <Bubble /> */}
         {/* <Typography variant="h4">Change Over Time Sequence for Each Status</Typography> */}
         <LinePlot /> 
@@ -336,7 +363,7 @@ export default function Home() {
         <Typography variant="h4">Mentors</Typography>
         <Box sx={{ display: "flex", flexWrap: "wrap", gap: "2rem", justifyContent: "center", mt: 3 }}>
           {teamMentors.map((member, index) => (
-            <TeamMemberCard key={index} {...member} />
+            <TeamMentorCard key={index} {...member} />
           ))}
         </Box>
       </Box>
