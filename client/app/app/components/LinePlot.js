@@ -41,9 +41,36 @@ const LinePlot = () => {
   // Dataload
   const transformData = (rawData) => {
     const statusData = {};
+    const statusNames = [
+      'total_Latent_prevalence',
+      'total_Infectious_symptomatic_prevalence',
+      'total_Infectious_asymptomatic_prevalence',
+      'total_Hospitalized_prevalence',
+      'total_ICU_prevalence',
+      'total_Removed_asymptomatic_prevalence',
+      'total_Removed_symptomatic_prevalence',
+      'total_Home_asymptomatic_prevalence',
+      'total_Home_mild_prevalence',
+      'total_Home_severe_prevalence',
+      'total_Removed_hospitalized_prevalence',
+      'total_Deaths_hospitalized_prevalence',
+      'total_Latent_incidence',
+      'total_Infectious_symptomatic_incidence',
+      'total_Infectious_asymptomatic_incidence',
+      'total_Hospitalized_incidence',
+      'total_ICU_incidence',
+      'total_Removed_asymptomatic_incidence',
+      'total_Removed_symptomatic_incidence',
+      'total_Home_asymptomatic_incidence',
+      'total_Home_mild_incidence',
+      'total_Home_severe_incidence',
+      'total_Removed_hospitalized_incidence',
+      'total_Deaths_hospitalized_incidence'
+    ]
 
     for (let statusIndex = 0; statusIndex < 24; statusIndex++) {
       const statusKey = `status_${statusIndex + 1}`;
+      // const statusKey = statusNames[statusIndex + 1];
       const timeValuePairs = [];
 
       // Aggregate by mean
@@ -83,7 +110,7 @@ const LinePlot = () => {
     // chart size
     const width = windowSize.width * 0.8;
     const height = windowSize.height * 0.8;
-    const margin = { top: 200, right: 100, bottom: 40, left: 100 };
+    const margin = { top: 200, right: 100, bottom: 100, left: 100 };
 
     const svg = d3.select(svgRef.current)
       .attr('width', width)
@@ -119,7 +146,17 @@ const LinePlot = () => {
       .attr("text-anchor", "middle")  
       .style("font-size", "40px") 
       .style("fill", "white")
-      .text(`Change over Time Sequence at Status = ${selectedStatus.split('_')[1]}`);
+      .text(`Individuals in Compartment ${selectedStatus.split('_')[1]} over Time`);
+
+       // X axis label
+    svg.append("text")
+    .attr("class", "x label")
+    .attr("text-anchor", "end")
+    .attr("x", (width /2))
+    .attr("y", height - (margin.bottom / 2))
+    .text("Days")
+    .style("font-size", "30px") 
+    .style("fill", "white");
 
     // line
     svg.append('g')
@@ -172,6 +209,7 @@ const LinePlot = () => {
       .attr('transform', `translate(0, ${height - margin.bottom})`)
       .call(d3.axisBottom(x))
       .style("font-size", "18px");
+    
 
     // y axis
     svg.append('g')

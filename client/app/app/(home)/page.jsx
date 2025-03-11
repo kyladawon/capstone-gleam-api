@@ -114,6 +114,16 @@ const teamMentors = [
     department: "University of California San Diego",
     imageSrc: "/1hdsi.png",
   },
+  {
+    name: "Matteo Chinazzi",
+    department: "Northeastern University",
+    imageSrc: "/1hdsi.png",
+  },
+  {
+    name: "Allen Wu",
+    department: "University of California San Diego",
+    imageSrc: "/1hdsi.png",
+  },
 ];
 
 <Box id="team" sx={getSectionStyles}>
