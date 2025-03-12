@@ -226,6 +226,8 @@ export default function Home() {
       {/* Overview Section */}
       <Box id="overview" sx={getSectionStyles}>
         <Typography variant="h3">Introduction</Typography>
+        <ReactMarkdown children={overviewContent} remarkPlugins={[remarkGfm]} />
+
         <Box
           sx={{
             maxWidth: "150vh",
@@ -242,7 +244,6 @@ export default function Home() {
     
           }}
         >
-          <ReactMarkdown children={overviewContent} remarkPlugins={[remarkGfm]} />
           <Image
               src={'/intro.png'} 
               alt={'intro'}
