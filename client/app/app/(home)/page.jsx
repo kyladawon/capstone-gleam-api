@@ -257,6 +257,8 @@ export default function Home() {
       {/* Methods Section */}
       <Box id="methods" sx={getSectionStyles}>
         <Typography variant="h3">Methods</Typography>
+        <ReactMarkdown children={methodsContent} remarkPlugins={[remarkGfm]} />
+
         <Box
           sx={{
             maxWidth: "150vh",
@@ -272,7 +274,6 @@ export default function Home() {
             textAlign: "center",
           }}
         >
-          <ReactMarkdown children={methodsContent} remarkPlugins={[remarkGfm]} />
         </Box>
       </Box>
 
@@ -307,6 +308,7 @@ export default function Home() {
       {/* Results Section */}
       <Box id="results" sx={getSectionStyles}>
         <Typography variant="h3">Results</Typography>
+        <ReactMarkdown children={resultsContent} remarkPlugins={[remarkGfm]} />
         <Box
           sx={{
             maxWidth: "150vh",
@@ -322,7 +324,6 @@ export default function Home() {
             textAlign: "center",
           }}
         >
-          <ReactMarkdown children={resultsContent} remarkPlugins={[remarkGfm]} />
             <figure style={{ textAlign: "center" }}>
               <Image
                 src={'/result1.png'} 
