@@ -262,7 +262,7 @@ export default function Home() {
             maxWidth: "150vh",
             margin: "0 auto",
             padding: "1.5rem",
-            // Semi-transparent background
+            backgroundColor: "rgba(255, 255, 255, 0.998)", // Semi-transparent background
             borderRadius: "10px",
             boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.1)", // Soft shadow
             color: "#333", // Dark gray text for readability
@@ -323,20 +323,32 @@ export default function Home() {
           }}
         >
           <ReactMarkdown children={resultsContent} remarkPlugins={[remarkGfm]} />
-            <Image
-              src={'/result1.png'} 
-              alt={'result one'}
-              width={3000}
-              height={2000}
-              style={{ width: "auto", height: "auto", maxWidth: "80%" }}
-            />
-            <Image
-              src={'/result2.png'} 
-              alt={'result one'}
-              width={3000}
-              height={2000}
-              style={{ width: "auto", height: "auto", maxWidth: "80%" }}
-            />
+            <figure style={{ textAlign: "center" }}>
+              <Image
+                src={'/result1.png'} 
+                alt={'result one'}
+                width={3000}
+                height={2000}
+                style={{ width: "auto", height: "auto", maxWidth: "80%" }}
+              />
+              <figcaption style={{ marginTop: "10px", fontSize: "14px", color: "#333" }}>
+                The figure shows the test MAE losses across different batch sizes of 1, 3, and 5. This shows
+                batch active learning with a greedy approach to point selection. The general goal is to train
+                on more data even if the data is generally of lower quality, to gain performance improvements.              
+              </figcaption>
+            </figure>
+            <figure style={{ textAlign: "center" }}>
+              <Image
+                src={'/result2.png'} 
+                alt={'result one'}
+                width={3000}
+                height={2000}
+                style={{ width: "auto", height: "auto", maxWidth: "80%" }}
+              />
+              <figcaption style={{ marginTop: "10px", fontSize: "14px", color: "#333" }}>
+                The figure shows a comparison of the log-scaled test MAE between our Leam-US model and the offline performance of a baseline model.
+              </figcaption>
+            </figure>
         </Box>
       </Box>
 
