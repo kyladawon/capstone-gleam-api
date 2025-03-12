@@ -262,7 +262,7 @@ export default function Home() {
             maxWidth: "150vh",
             margin: "0 auto",
             padding: "1.5rem",
-            backgroundColor: "rgba(255, 255, 255, 0.998)", // Semi-transparent background
+            // Semi-transparent background
             borderRadius: "10px",
             boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.1)", // Soft shadow
             color: "#333", // Dark gray text for readability
