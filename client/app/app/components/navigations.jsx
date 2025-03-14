@@ -63,13 +63,15 @@ export default function Navigations() {
           <Typography variant="h6">Overview</Typography>
         </MenuBox>
 
+        <MenuBox onClick={() => handleScroll("architecture")}>
+          <Typography variant="h6">Architecture</Typography>
+        </MenuBox>
+
         <MenuBox onClick={() => handleScroll("methods")}>
           <Typography variant="h6">Methods</Typography>
         </MenuBox>
 
-        <MenuBox onClick={() => handleScroll("architecture")}>
-          <Typography variant="h6">Architecture</Typography>
-        </MenuBox>
+       
 
         <MenuBox onClick={() => handleScroll("results")}>
           <Typography variant="h6">Results</Typography>
