@@ -12,7 +12,7 @@ import Bubble from '../components/Bubble';
 import LinePlot from '../components/LinePlot';
 import AreaPlot from '../components/Area';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
-import { oneLight } from 'react-syntax-highlighter/dist/esm/styles/prism'; // Or another theme you prefer
+import { oneLight } from 'react-syntax-highlighter/dist/esm/styles/prism'; 
 
 
 const getSectionStyles = (theme) => ({
@@ -39,10 +39,10 @@ const TeamMemberCard = ({ name, school, linkedin, imageSrc }) => (
     padding: "1rem",
     backgroundColor: "#f4f4f4", 
     borderRadius: "8px", // Rounded corners
-    boxShadow: "0px 4px 6px rgba(0, 0, 0, 0.1)", // Light shadow for depth
+    boxShadow: "0px 4px 6px rgba(0, 0, 0, 0.1)", 
     transition: "transform 0.3s ease-in-out",
     "&:hover": {
-      transform: "scale(1.05)", // Slight scale effect on hover
+      transform: "scale(1.05)", 
     },
   }}>
     <Image
@@ -50,7 +50,7 @@ const TeamMemberCard = ({ name, school, linkedin, imageSrc }) => (
       alt={name}
       width={150}
       height={150}
-      style={{ borderRadius: "50%" }} // Make the image round
+      style={{ borderRadius: "50%" }} 
     />
     <Typography variant="h6" sx={{ mt: 2, color: "black" }}>{name}</Typography>
     <Typography variant="body1" sx={{ color: "gray" }}>{school}</Typography>
@@ -73,11 +73,11 @@ const TeamMentorCard = ({ name, department, imageSrc }) => (
     width: "200px",
     padding: "1rem",
     backgroundColor: "#f4f4f4", 
-    borderRadius: "8px", // Rounded corners
-    boxShadow: "0px 4px 6px rgba(0, 0, 0, 0.1)", // Light shadow for depth
+    borderRadius: "8px", 
+    boxShadow: "0px 4px 6px rgba(0, 0, 0, 0.1)", 
     transition: "transform 0.3s ease-in-out",
     "&:hover": {
-      transform: "scale(1.05)", // Slight scale effect on hover
+      transform: "scale(1.05)", 
     },
   }}>
     <Image
@@ -85,7 +85,7 @@ const TeamMentorCard = ({ name, department, imageSrc }) => (
       alt={name}
       width={150}
       height={150}
-      style={{ borderRadius: "50%" }} // Make the image round
+      style={{ borderRadius: "50%" }} 
     />
     <Typography variant="h6" sx={{ mt: 2, color: "black" }}>{name}</Typography>
     <Typography variant="body1" sx={{ color: "gray" }}>{department}</Typography>
@@ -205,16 +205,16 @@ export default function Home() {
       const match = /language-(\w+)/.exec(className || '');
       return !inline && match ? (
         <SyntaxHighlighter
-          style={oneLight}  // Brighter theme
+          style={oneLight}  
           language={match[1]}
           PreTag="div"
           customStyle={{
-            maxWidth: '1000px',   // Fixed width for consistency
-            width: '1000px',       // Responsive behavior
-            margin: '0 auto',    // Center the code block
-            borderRadius: '8px', // Rounded corners
-            boxShadow: '0 4px 10px rgba(0, 0, 0, 0.1)', // Soft shadow
-            overflowX: 'auto'    // Ensures horizontal scroll if needed
+            maxWidth: '1000px',   
+            width: '1000px',      
+            margin: '0 auto',    
+            borderRadius: '8px', 
+            boxShadow: '0 4px 10px rgba(0, 0, 0, 0.1)', 
+            overflowX: 'auto'   
           }}
           {...props}
         >
@@ -234,8 +234,8 @@ export default function Home() {
       <Box
         sx={(theme) => ({
           ...getSectionStyles(theme),
-          position: "relative", // Ensure child elements can be positioned within
-          overflow: "hidden",   // Prevents overflow of the map
+          position: "relative", 
+          overflow: "hidden",   
         })}
           >
       {/* WorldMap as Background */}
@@ -246,8 +246,8 @@ export default function Home() {
           left: -50,
           width: "100%",
           height: "100%",
-          zIndex: 0, // Push the map to the background
-          opacity: 0.2, // Adjust opacity for visibility
+          zIndex: 0, 
+          opacity: 0.2, 
         }}
       >
         <WorldMap />
@@ -272,21 +272,21 @@ export default function Home() {
 
         <Box
           sx={{
-            maxWidth: "120vh", // Slightly reduced for better content width
-            margin: "2rem auto", // More margin for spacing
-            padding: "2rem", // Balanced padding for better spacing
-            background: "linear-gradient(135deg, #ffffff 0%, #f7f8fc 100%)", // Subtle gradient
-            borderRadius: "16px", // Softer rounded corners
-            boxShadow: "0 6px 15px rgba(0, 0, 0, 0.1)", // Softer shadow
-            color: "#333", // Dark gray for readability
-            fontSize: "1.1rem", // Balanced font size
-            lineHeight: "1.8", // Improved text spacing
-            fontFamily: "'Inter', sans-serif", // Modern, clean font
-            border: "1px solid #eaeaea", // Subtle border for structure
-            transition: "transform 0.2s ease-in-out", // Smooth hover effect
+            maxWidth: "120vh", 
+            margin: "2rem auto", 
+            padding: "2rem",
+            background: "linear-gradient(135deg, #ffffff 0%, #f7f8fc 100%)", 
+            borderRadius: "16px", 
+            boxShadow: "0 6px 15px rgba(0, 0, 0, 0.1)", 
+            color: "#333", 
+            fontSize: "1.1rem",
+            lineHeight: "1.8", 
+            fontFamily: "'Inter', sans-serif",
+            border: "1px solid #eaeaea", 
+            transition: "transform 0.2s ease-in-out",
             "&:hover": {
-              transform: "scale(1.02)", // Slight zoom on hover
-              boxShadow: "0 8px 20px rgba(0, 0, 0, 0.15)", // Stronger shadow on hover
+              transform: "scale(1.02)", 
+              boxShadow: "0 8px 20px rgba(0, 0, 0, 0.15)", 
             },
             textAlign: 'center'
           }}
@@ -306,21 +306,21 @@ export default function Home() {
       <Box id="architecture" sx={getSectionStyles}>
         <Typography variant="h3">Architecture</Typography>
         <Box sx={{
-            maxWidth: "120vh", // Slightly reduced for better content width
-            margin: "2rem auto", // More margin for spacing
-            padding: "2rem", // Balanced padding for better spacing
-            background: "linear-gradient(135deg, #ffffff 0%, #f7f8fc 100%)", // Subtle gradient
-            borderRadius: "16px", // Softer rounded corners
-            boxShadow: "0 6px 15px rgba(0, 0, 0, 0.1)", // Softer shadow
-            color: "#333", // Dark gray for readability
-            fontSize: "1.1rem", // Balanced font size
-            lineHeight: "1.8", // Improved text spacing
-            fontFamily: "'Inter', sans-serif", // Modern, clean font
-            border: "1px solid #eaeaea", // Subtle border for structure
-            transition: "transform 0.2s ease-in-out", // Smooth hover effect
+            maxWidth: "120vh", 
+            margin: "2rem auto", 
+            padding: "2rem",
+            background: "linear-gradient(135deg, #ffffff 0%, #f7f8fc 100%)", 
+            borderRadius: "16px", 
+            boxShadow: "0 6px 15px rgba(0, 0, 0, 0.1)", 
+            color: "#333", 
+            fontSize: "1.1rem",
+            lineHeight: "1.8", 
+            fontFamily: "'Inter', sans-serif",
+            border: "1px solid #eaeaea", 
+            transition: "transform 0.2s ease-in-out",
             "&:hover": {
-              transform: "scale(1.02)", // Slight zoom on hover
-              boxShadow: "0 8px 20px rgba(0, 0, 0, 0.15)", // Stronger shadow on hover
+              transform: "scale(1.02)", 
+              boxShadow: "0 8px 20px rgba(0, 0, 0, 0.15)", 
             },
             textAlign: 'center'
           }}
@@ -335,21 +335,21 @@ export default function Home() {
         </Box>
         <Typography variant="h4">API Endpoints</Typography>
         <Box sx={{
-            maxWidth: "120vh", // Slightly reduced for better content width
-            margin: "2rem auto", // More margin for spacing
-            padding: "2rem", // Balanced padding for better spacing
-            background: "linear-gradient(135deg, #ffffff 0%, #f7f8fc 100%)", // Subtle gradient
-            borderRadius: "16px", // Softer rounded corners
-            boxShadow: "0 6px 15px rgba(0, 0, 0, 0.1)", // Softer shadow
-            color: "#333", // Dark gray for readability
-            fontSize: "1.1rem", // Balanced font size
-            lineHeight: "1.8", // Improved text spacing
-            fontFamily: "'Inter', sans-serif", // Modern, clean font
-            border: "1px solid #eaeaea", // Subtle border for structure
-            transition: "transform 0.2s ease-in-out", // Smooth hover effect
+            maxWidth: "120vh", 
+            margin: "2rem auto", 
+            padding: "2rem",
+            background: "linear-gradient(135deg, #ffffff 0%, #f7f8fc 100%)", 
+            borderRadius: "16px", 
+            boxShadow: "0 6px 15px rgba(0, 0, 0, 0.1)", 
+            color: "#333", 
+            fontSize: "1.1rem",
+            lineHeight: "1.8", 
+            fontFamily: "'Inter', sans-serif",
+            border: "1px solid #eaeaea", 
+            transition: "transform 0.2s ease-in-out",
             "&:hover": {
-              transform: "scale(1.02)", // Slight zoom on hover
-              boxShadow: "0 8px 20px rgba(0, 0, 0, 0.15)", // Stronger shadow on hover
+              transform: "scale(1.02)", 
+              boxShadow: "0 8px 20px rgba(0, 0, 0, 0.15)", 
             },
           }}
           >
@@ -370,21 +370,21 @@ export default function Home() {
         <ReactMarkdown children={resultsContent} remarkPlugins={[remarkGfm]} />
         <Box
           sx={{
-            maxWidth: "120vh", // Slightly reduced for better content width
-            margin: "2rem auto", // More margin for spacing
-            padding: "2rem", // Balanced padding for better spacing
-            background: "linear-gradient(135deg, #ffffff 0%, #f7f8fc 100%)", // Subtle gradient
-            borderRadius: "16px", // Softer rounded corners
-            boxShadow: "0 6px 15px rgba(0, 0, 0, 0.1)", // Softer shadow
-            color: "#333", // Dark gray for readability
-            fontSize: "1.1rem", // Balanced font size
-            lineHeight: "1.8", // Improved text spacing
-            fontFamily: "'Inter', sans-serif", // Modern, clean font
-            border: "1px solid #eaeaea", // Subtle border for structure
-            transition: "transform 0.2s ease-in-out", // Smooth hover effect
+            maxWidth: "120vh", 
+            margin: "2rem auto", 
+            padding: "2rem",
+            background: "linear-gradient(135deg, #ffffff 0%, #f7f8fc 100%)", 
+            borderRadius: "16px", 
+            boxShadow: "0 6px 15px rgba(0, 0, 0, 0.1)", 
+            color: "#333", 
+            fontSize: "1.1rem",
+            lineHeight: "1.8", 
+            fontFamily: "'Inter', sans-serif",
+            border: "1px solid #eaeaea", 
+            transition: "transform 0.2s ease-in-out",
             "&:hover": {
-              transform: "scale(1.02)", // Slight zoom on hover
-              boxShadow: "0 8px 20px rgba(0, 0, 0, 0.15)", // Stronger shadow on hover
+              transform: "scale(1.02)", 
+              boxShadow: "0 8px 20px rgba(0, 0, 0, 0.15)", 
             },
             textAlign: 'center'
           }}
