@@ -9,7 +9,7 @@ import WorldMap from "../components/WorldMap";
 import { ThemeProvider } from "@emotion/react";
 import { theme } from '/theme.js';
 import Bubble from '../components/Bubble';
-import LinePlot from '../components/LinePlot';
+import LinePlot from '../components/LinePlot.jsx';
 import AreaPlot from '../components/Area';
 
 const getSectionStyles = (theme) => ({
@@ -108,7 +108,7 @@ const teamMembers = [
     name: "Ethan Cao",
     school: "University of California San Diego",
     linkedin: "https://www.linkedin.com/in/ethan-cao1/",
-    imageSrc: "/1hdsi.png",
+    imageSrc: "/ethan_cao.jpg",
   },
   {
     name: "Liam Manatt",
