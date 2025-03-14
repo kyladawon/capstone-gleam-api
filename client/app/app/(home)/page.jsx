@@ -11,6 +11,9 @@ import { theme } from '/theme.js';
 import Bubble from '../components/Bubble';
 import LinePlot from '../components/LinePlot';
 import AreaPlot from '../components/Area';
+import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
+import { oneLight } from 'react-syntax-highlighter/dist/esm/styles/prism'; // Or another theme you prefer
+
 
 const getSectionStyles = (theme) => ({
   display: "flex",
@@ -114,7 +117,7 @@ const teamMembers = [
     name: "Liam Manatt",
     school: "University of California San Diego",
     linkedin: "https://www.linkedin.com/in/liam-manatt/",
-    imageSrc: "/1hdsi.png",
+    imageSrc: "/liam.jpg",
   },
   {
     name: "Manav Jairam",
@@ -168,13 +171,23 @@ const teamMentors = [
 
 export default function Home() {
   const [overviewContent, setOverviewContent] = useState("");
+  const [overview2Content, setOverview2Content] = useState("");
   const [methodsContent, setMethodsContent] = useState("");
   const [resultsContent, setResultsContent] = useState("");
+  const [architectureContent, setArchitectureContent] = useState("");
   useEffect(() => {
     fetch('/intro.md')
       .then(response => response.text())
       .then(data => setOverviewContent(data));
-
+    
+    fetch('/intro2.md')
+      .then(response => response.text())
+      .then(data => setOverview2Content(data));
+    
+    fetch('/architecture.md')
+      .then(response => response.text())
+      .then(data => setArchitectureContent(data));
+      
     fetch('/methods.md')
     .then(response => response.text())
     .then(data => setMethodsContent(data));
@@ -185,6 +198,35 @@ export default function Home() {
 
       
   }, []);
+
+
+  const renderers = {
+    code({ node, inline, className, children, ...props }) {
+      const match = /language-(\w+)/.exec(className || '');
+      return !inline && match ? (
+        <SyntaxHighlighter
+          style={oneLight}  // Brighter theme
+          language={match[1]}
+          PreTag="div"
+          customStyle={{
+            maxWidth: '1000px',   // Fixed width for consistency
+            width: '1000px',       // Responsive behavior
+            margin: '0 auto',    // Center the code block
+            borderRadius: '8px', // Rounded corners
+            boxShadow: '0 4px 10px rgba(0, 0, 0, 0.1)', // Soft shadow
+            overflowX: 'auto'    // Ensures horizontal scroll if needed
+          }}
+          {...props}
+        >
+          {String(children).replace(/\n$/, '')}
+        </SyntaxHighlighter>
+      ) : (
+        <code className={className} {...props}>
+          {children}
+        </code>
+      );
+    },
+  };
 
   return (
     <ThemeProvider theme={theme}>
@@ -226,22 +268,27 @@ export default function Home() {
       {/* Overview Section */}
       <Box id="overview" sx={getSectionStyles}>
         <Typography variant="h3">Introduction</Typography>
-        <ReactMarkdown children={overviewContent} remarkPlugins={[remarkGfm]} />
+        <ReactMarkdown components={renderers}children={overviewContent} remarkPlugins={[remarkGfm]} />
 
         <Box
           sx={{
-            maxWidth: "150vh",
-            margin: "0 auto",
-            padding: "1.5rem",
-            backgroundColor: "rgba(255, 255, 255, 0.998)", // Semi-transparent background
-            borderRadius: "10px",
-            boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.1)", // Soft shadow
-            color: "#333", // Dark gray text for readability
-            fontSize: "1.2rem", // Adjust font size
-            lineHeight: "1.6", // Improve text readability
-            fontFamily: "Arial, sans-serif", // Ensure a clean font
-            textAlign: "center",
-    
+            maxWidth: "120vh", // Slightly reduced for better content width
+            margin: "2rem auto", // More margin for spacing
+            padding: "2rem", // Balanced padding for better spacing
+            background: "linear-gradient(135deg, #ffffff 0%, #f7f8fc 100%)", // Subtle gradient
+            borderRadius: "16px", // Softer rounded corners
+            boxShadow: "0 6px 15px rgba(0, 0, 0, 0.1)", // Softer shadow
+            color: "#333", // Dark gray for readability
+            fontSize: "1.1rem", // Balanced font size
+            lineHeight: "1.8", // Improved text spacing
+            fontFamily: "'Inter', sans-serif", // Modern, clean font
+            border: "1px solid #eaeaea", // Subtle border for structure
+            transition: "transform 0.2s ease-in-out", // Smooth hover effect
+            "&:hover": {
+              transform: "scale(1.02)", // Slight zoom on hover
+              boxShadow: "0 8px 20px rgba(0, 0, 0, 0.15)", // Stronger shadow on hover
+            },
+            textAlign: 'center'
           }}
         >
           <Image
@@ -252,47 +299,30 @@ export default function Home() {
               style={{ width: "auto", height: "auto", maxWidth: "30%" }}
             />
         </Box>
-      </Box>
-
-      {/* Methods Section */}
-      <Box id="methods" sx={getSectionStyles}>
-        <Typography variant="h3">Methods</Typography>
-        <ReactMarkdown children={methodsContent} remarkPlugins={[remarkGfm]} />
-
-        <Box
-          sx={{
-            maxWidth: "150vh",
-            margin: "0 auto",
-            padding: "1.5rem",
-            backgroundColor: "rgba(255, 255, 255, 0.998)", // Semi-transparent background
-            borderRadius: "10px",
-            boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.1)", // Soft shadow
-            color: "#333", // Dark gray text for readability
-            fontSize: "1.2rem", // Adjust font size
-            lineHeight: "1.6", // Improve text readability
-            fontFamily: "Arial, sans-serif", // Ensure a clean font
-            textAlign: "center",
-          }}
-        >
-        </Box>
+        <ReactMarkdown components={renderers} children={overview2Content} remarkPlugins={[remarkGfm]} />
       </Box>
 
       {/* Architecture Section */}
       <Box id="architecture" sx={getSectionStyles}>
         <Typography variant="h3">Architecture</Typography>
         <Box sx={{
-            maxWidth: "150vh",
-            margin: "0 auto",
-            padding: "1.5rem",
-            backgroundColor: "rgba(255, 255, 255, 0.998)", // Semi-transparent background
-            borderRadius: "10px",
-            boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.1)", // Soft shadow
-            color: "#333", // Dark gray text for readability
-            fontSize: "1.2rem", // Adjust font size
-            lineHeight: "1.6", // Improve text readability
-            fontFamily: "Arial, sans-serif", // Ensure a clean font
-            textAlign: "center",
-
+            maxWidth: "120vh", // Slightly reduced for better content width
+            margin: "2rem auto", // More margin for spacing
+            padding: "2rem", // Balanced padding for better spacing
+            background: "linear-gradient(135deg, #ffffff 0%, #f7f8fc 100%)", // Subtle gradient
+            borderRadius: "16px", // Softer rounded corners
+            boxShadow: "0 6px 15px rgba(0, 0, 0, 0.1)", // Softer shadow
+            color: "#333", // Dark gray for readability
+            fontSize: "1.1rem", // Balanced font size
+            lineHeight: "1.8", // Improved text spacing
+            fontFamily: "'Inter', sans-serif", // Modern, clean font
+            border: "1px solid #eaeaea", // Subtle border for structure
+            transition: "transform 0.2s ease-in-out", // Smooth hover effect
+            "&:hover": {
+              transform: "scale(1.02)", // Slight zoom on hover
+              boxShadow: "0 8px 20px rgba(0, 0, 0, 0.15)", // Stronger shadow on hover
+            },
+            textAlign: 'center'
           }}
           >
             <Image
@@ -302,7 +332,36 @@ export default function Home() {
               height={2000}
               style={{ width: "auto", height: "auto", maxWidth: "80%" }}
             />
-          </Box>
+        </Box>
+        <Typography variant="h4">API Endpoints</Typography>
+        <Box sx={{
+            maxWidth: "120vh", // Slightly reduced for better content width
+            margin: "2rem auto", // More margin for spacing
+            padding: "2rem", // Balanced padding for better spacing
+            background: "linear-gradient(135deg, #ffffff 0%, #f7f8fc 100%)", // Subtle gradient
+            borderRadius: "16px", // Softer rounded corners
+            boxShadow: "0 6px 15px rgba(0, 0, 0, 0.1)", // Softer shadow
+            color: "#333", // Dark gray for readability
+            fontSize: "1.1rem", // Balanced font size
+            lineHeight: "1.8", // Improved text spacing
+            fontFamily: "'Inter', sans-serif", // Modern, clean font
+            border: "1px solid #eaeaea", // Subtle border for structure
+            transition: "transform 0.2s ease-in-out", // Smooth hover effect
+            "&:hover": {
+              transform: "scale(1.02)", // Slight zoom on hover
+              boxShadow: "0 8px 20px rgba(0, 0, 0, 0.15)", // Stronger shadow on hover
+            },
+          }}
+          >
+            <ReactMarkdown components={renderers} children={architectureContent} remarkPlugins={[remarkGfm]} />
+        </Box>
+        
+      </Box>
+
+      {/* Methods Section */}
+      <Box id="methods" sx={getSectionStyles}>
+        <Typography variant="h3">Methods</Typography>
+        <ReactMarkdown components={renderers} children={methodsContent} remarkPlugins={[remarkGfm]} />
       </Box>
 
       {/* Results Section */}
@@ -311,17 +370,23 @@ export default function Home() {
         <ReactMarkdown children={resultsContent} remarkPlugins={[remarkGfm]} />
         <Box
           sx={{
-            maxWidth: "150vh",
-            margin: "0 auto",
-            padding: "1.5rem",
-            backgroundColor: "rgba(255, 255, 255, 0.998)", // Semi-transparent background
-            borderRadius: "10px",
-            boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.1)", // Soft shadow
-            color: "#333", // Dark gray text for readability
-            fontSize: "1.2rem", // Adjust font size
-            lineHeight: "1.6", // Improve text readability
-            fontFamily: "Arial, sans-serif", // Ensure a clean font
-            textAlign: "center",
+            maxWidth: "120vh", // Slightly reduced for better content width
+            margin: "2rem auto", // More margin for spacing
+            padding: "2rem", // Balanced padding for better spacing
+            background: "linear-gradient(135deg, #ffffff 0%, #f7f8fc 100%)", // Subtle gradient
+            borderRadius: "16px", // Softer rounded corners
+            boxShadow: "0 6px 15px rgba(0, 0, 0, 0.1)", // Softer shadow
+            color: "#333", // Dark gray for readability
+            fontSize: "1.1rem", // Balanced font size
+            lineHeight: "1.8", // Improved text spacing
+            fontFamily: "'Inter', sans-serif", // Modern, clean font
+            border: "1px solid #eaeaea", // Subtle border for structure
+            transition: "transform 0.2s ease-in-out", // Smooth hover effect
+            "&:hover": {
+              transform: "scale(1.02)", // Slight zoom on hover
+              boxShadow: "0 8px 20px rgba(0, 0, 0, 0.15)", // Stronger shadow on hover
+            },
+            textAlign: 'center'
           }}
         >
             <figure style={{ textAlign: "center" }}>
