@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import { Box, Typography } from "@mui/material";
+import { Box, Button, Typography } from "@mui/material";
 import Image from 'next/image';
 import ReactMarkdown from "react-markdown"
 import remarkGfm from "remark-gfm";
@@ -262,8 +262,33 @@ export default function Home() {
         <Typography variant="h2" fontWeight="bold" fontSize="2.5rem">
         Bridging Epidemic Simulators (GLEAM) with AI Algorithms
         </Typography>
+      
+        {/* Buttons Section */}
+        <Box sx={{ display: "flex", justifyContent: "center", gap: 2, mt: 3 }}>
+          <Button
+            variant="contained"
+            color="primary"
+            onClick={() => window.open('/Capstone_Report_2024.pdf', '_blank')}
+          >
+            Report
+          </Button>
+          <Button
+            variant="contained"
+            color="secondary"
+            onClick={() => window.open('https://github.com/Rose-STL-Lab/GLEAM-API', '_blank')}
+          >
+            GitHub
+          </Button>
+          <Button
+            variant="contained"
+            color="success"
+            onClick={() => window.open('capstone-a11-1-poster.pdf', '_blank')}
+          >
+            Poster
+          </Button>
+        </Box>
+        </Box>
       </Box>
-    </Box>
 
       {/* Overview Section */}
       <Box id="overview" sx={getSectionStyles}>
