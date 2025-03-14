@@ -111,7 +111,7 @@ const teamMembers = [
     name: "Ethan Cao",
     school: "University of California San Diego",
     linkedin: "https://www.linkedin.com/in/ethan-cao1/",
-    imageSrc: "/ethan_cao.jpg",
+    imageSrc: "/1hdsi.png",
   },
   {
     name: "Liam Manatt",
@@ -445,7 +445,6 @@ export default function Home() {
 
       {/* Demo Section */}
       <Box id="demo" sx={getSectionStyles}>
-        <Typography variant="h3">Epidemic Progression</Typography>
         {/* <Bubble /> */}
         {/* <Typography variant="h4">Change Over Time Sequence for Each Status</Typography> */}
         <LinePlot /> 

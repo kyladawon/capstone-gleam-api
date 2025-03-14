@@ -1,6 +1,7 @@
 import React, { useRef, useState, useEffect } from 'react';
 import * as d3 from 'd3';
 import RangeSlider from "./RangeSlider"
+import { Typography } from '@mui/material';
 
 const LinePlot = () => {
   const svgRef = useRef();
@@ -158,14 +159,13 @@ const LinePlot = () => {
     const line = d3.line()
       .x((d) => x(d.time))
       .y((d) => y(d.value));
-
+  
     svg.selectAll('*').remove();
 
-    
-
+  
     // title
     svg.append("text")
-      .attr("x", (width / 2))             
+      .attr("x", (width / 1.9))             
       .attr("y", margin.top / 2)
       .attr("text-anchor", "middle")  
       .style("font-size", "40px") 
@@ -252,7 +252,35 @@ const LinePlot = () => {
       .text("Number of Individuals")
       .style("font-size", "20px")
       .style("fill", "white");
-    
+
+    const legendData = [
+      { label: "GLEAM Data", color: "steelblue" },
+      { label: "Model Prediction", color: "yellow" }
+    ];
+
+    // Legend
+    const legend = svg.append("g")
+    .attr("transform", `translate(${width - margin.right - 100}, ${margin.top})`);
+
+    legend.selectAll("rect")
+    .data(legendData)
+    .enter().append("rect")
+    .attr("x", 0)
+    .attr("y", (d, i) => i * 25)
+    .attr("width", 20)
+    .attr("height", 20)
+    .attr("fill", d => d.color);
+
+    legend.selectAll("text")
+    .data(legendData)
+    .enter().append("text")
+    .attr("x", 30)
+    .attr("y", (d, i) => i * 25 + 15)
+    .text(d => d.label)
+    .style("font-size", "18px")
+    .style("fill", "white")
+    .attr("alignment-baseline", "middle");
+
   };
 
   useEffect(() => {
@@ -262,20 +290,100 @@ const LinePlot = () => {
   }, [selectedStatus, data]);
 
   return (
-    <div style = {{display: 'flex', flexDirection: 'column',  height:'100%'}}>
-      <svg ref={svgRef}></svg>
-      <select onChange={(e) => setSelectedStatus(e.target.value)} value={selectedStatus} style={{ fontSize: '16px', padding: '5px', width: '500px', fontWeight: 'bold', marginTop:'10px'}}>
-        {statusOptions.map((option) => (
-          <option key={option.value} value={option.value}>
-            {option.label}
-          </option>
-        ))}
-      </select>
-      <RangeSlider title='Var1' min={-15} max={-5} value={-7} step={1}/>
-      <RangeSlider title='Var2' min={5} max={250} value={170} step={1}/>
-      <RangeSlider title='Var3' min={10} max={20} value={15} step={2}/>
+    <div style={{
+      display: 'flex',
+      flexDirection: 'column', 
+      width: '100vw',
+      height: '100vh',
+      backgroundColor: '#282c34',  
+      padding: '20px',             
+      boxSizing: 'border-box'    
+    }}>
+      
+      {/* Title Section */}
+      <Typography 
+        style={{
+          textAlign: 'center',       
+          color: '#ffffff',        
+          fontSize: '40px',        
+          marginBottom: '20px' ,
+          fontWeight: 'bold'         
+        }}
+      >
+        Epidemic Progression
+      </Typography>
+  
+      {/* Content Section (Graph + Sliders) */}
+      <div style={{
+        display: 'flex',
+        flex: 0.8,
+        gap: '20px'  
+      }}>
+        
+        {/* Chart Section */}
+        <div style={{
+          flex: 3.1,                
+          minWidth: 0,
+          minHeight: 0,
+          padding: '20px',
+          backgroundColor: '#3a3f47',  
+          borderRadius: '12px',        
+          boxShadow: '4px 4px 10px rgba(0, 0, 0, 0.5)',  
+        }}>
+          <svg ref={svgRef} style={{ 
+            maxWidth: '150%',         
+            maxHeight: '100%',    
+            transform: 'scale(0.85)', 
+            // marginLeft: '40px',
+            transformOrigin: 'top left',    
+          }}></svg>
+        </div>
+
+  
+        {/* Sliders Section */}
+        <div style={{
+          flex: 1, 
+          display: 'flex',
+          flexDirection: 'column',
+          gap: '15px',
+          padding: '20px',
+          backgroundColor: '#3a3f47', 
+          borderRadius: '12px',       
+          boxShadow: '4px 4px 10px rgba(0, 0, 0, 0.5)', 
+          minHeight: '80%'  ,        
+          height: '96%',
+        }}>
+          <select
+            onChange={(e) => setSelectedStatus(e.target.value)}
+            value={selectedStatus}
+            style={{
+              fontSize: '16px',
+              padding: '8px',
+              width: '100%',
+              borderRadius: '8px',
+              backgroundColor: '#4b4f57',
+              color: '#ffffff',
+              border: 'none'
+            }}
+          >
+            {statusOptions.map((option) => (
+              <option key={option.value} value={option.value}>
+                {option.label}
+              </option>
+            ))}
+          </select>
+  
+          <RangeSlider title='Var 1' min={-15} max={-5} value={-7} step={1}/>
+          <RangeSlider title='Var 2' min={5} max={250} value={170} step={1}/>
+          <RangeSlider title='Var 3' min={10} max={20} value={15} step={2}/>
+        </div>
+      </div>
     </div>
   );
+  
+  
+  
+  
 };
 
 export default LinePlot;
